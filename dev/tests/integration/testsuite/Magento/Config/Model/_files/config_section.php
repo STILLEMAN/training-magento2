@@ -8,7 +8,7 @@ return [
     [
         'section' => 'dev',
         'groups' => [
-            'log' => [
+            'PredispatchLogUrl' => [
                 'fields' => [
                     'active' => ['value' => '1'],
                     'file' => ['value' => 'fileName.log'],

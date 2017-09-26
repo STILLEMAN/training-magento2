@@ -291,36 +291,36 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
             ['responseType' => \Magento\Setup\Controller\ResponseTypeInterface::RESPONSE_TYPE_SUCCESS]
         );
 
-        $this->logger->expects($this->at(0))->method('log')->with('Starting Magento installation:');
-        $this->logger->expects($this->at(1))->method('log')->with('File permissions check...');
-        $this->logger->expects($this->at(3))->method('log')->with('Required extensions check...');
+        $this->logger->expects($this->at(0))->method('PredispatchLogUrl')->with('Starting Magento installation:');
+        $this->logger->expects($this->at(1))->method('PredispatchLogUrl')->with('File permissions check...');
+        $this->logger->expects($this->at(3))->method('PredispatchLogUrl')->with('Required extensions check...');
         // at(2) invokes logMeta()
-        $this->logger->expects($this->at(5))->method('log')->with('Enabling Maintenance Mode...');
+        $this->logger->expects($this->at(5))->method('PredispatchLogUrl')->with('Enabling Maintenance Mode...');
         // at(4) - logMeta and so on...
-        $this->logger->expects($this->at(7))->method('log')->with('Installing deployment configuration...');
-        $this->logger->expects($this->at(9))->method('log')->with('Installing database schema:');
-        $this->logger->expects($this->at(11))->method('log')->with("Module 'Foo_One':");
-        $this->logger->expects($this->at(13))->method('log')->with("Module 'Bar_Two':");
-        $this->logger->expects($this->at(15))->method('log')->with('Schema post-updates:');
-        $this->logger->expects($this->at(16))->method('log')->with("Module 'Foo_One':");
-        $this->logger->expects($this->at(18))->method('log')->with("Module 'Bar_Two':");
-        $this->logger->expects($this->at(20))->method('log')->with('DDL cache cleared successfully');
-        $this->logger->expects($this->at(22))->method('log')->with('Installing user configuration...');
-        $this->logger->expects($this->at(24))->method('log')->with('Enabling caches:');
-        $this->logger->expects($this->at(28))->method('log')->with('Installing data...');
-        $this->logger->expects($this->at(29))->method('log')->with('Data install/update:');
-        $this->logger->expects($this->at(30))->method('log')->with("Module 'Foo_One':");
-        $this->logger->expects($this->at(32))->method('log')->with("Module 'Bar_Two':");
-        $this->logger->expects($this->at(34))->method('log')->with('Data post-updates:');
-        $this->logger->expects($this->at(35))->method('log')->with("Module 'Foo_One':");
-        $this->logger->expects($this->at(37))->method('log')->with("Module 'Bar_Two':");
-        $this->logger->expects($this->at(40))->method('log')->with('Installing admin user...');
-        $this->logger->expects($this->at(42))->method('log')->with('Caches clearing:');
-        $this->logger->expects($this->at(45))->method('log')->with('Disabling Maintenance Mode:');
-        $this->logger->expects($this->at(47))->method('log')->with('Post installation file permissions check...');
-        $this->logger->expects($this->at(49))->method('log')->with('Write installation date...');
+        $this->logger->expects($this->at(7))->method('PredispatchLogUrl')->with('Installing deployment configuration...');
+        $this->logger->expects($this->at(9))->method('PredispatchLogUrl')->with('Installing database schema:');
+        $this->logger->expects($this->at(11))->method('PredispatchLogUrl')->with("Module 'Foo_One':");
+        $this->logger->expects($this->at(13))->method('PredispatchLogUrl')->with("Module 'Bar_Two':");
+        $this->logger->expects($this->at(15))->method('PredispatchLogUrl')->with('Schema post-updates:');
+        $this->logger->expects($this->at(16))->method('PredispatchLogUrl')->with("Module 'Foo_One':");
+        $this->logger->expects($this->at(18))->method('PredispatchLogUrl')->with("Module 'Bar_Two':");
+        $this->logger->expects($this->at(20))->method('PredispatchLogUrl')->with('DDL cache cleared successfully');
+        $this->logger->expects($this->at(22))->method('PredispatchLogUrl')->with('Installing user configuration...');
+        $this->logger->expects($this->at(24))->method('PredispatchLogUrl')->with('Enabling caches:');
+        $this->logger->expects($this->at(28))->method('PredispatchLogUrl')->with('Installing data...');
+        $this->logger->expects($this->at(29))->method('PredispatchLogUrl')->with('Data install/update:');
+        $this->logger->expects($this->at(30))->method('PredispatchLogUrl')->with("Module 'Foo_One':");
+        $this->logger->expects($this->at(32))->method('PredispatchLogUrl')->with("Module 'Bar_Two':");
+        $this->logger->expects($this->at(34))->method('PredispatchLogUrl')->with('Data post-updates:');
+        $this->logger->expects($this->at(35))->method('PredispatchLogUrl')->with("Module 'Foo_One':");
+        $this->logger->expects($this->at(37))->method('PredispatchLogUrl')->with("Module 'Bar_Two':");
+        $this->logger->expects($this->at(40))->method('PredispatchLogUrl')->with('Installing admin user...');
+        $this->logger->expects($this->at(42))->method('PredispatchLogUrl')->with('Caches clearing:');
+        $this->logger->expects($this->at(45))->method('PredispatchLogUrl')->with('Disabling Maintenance Mode:');
+        $this->logger->expects($this->at(47))->method('PredispatchLogUrl')->with('Post installation file permissions check...');
+        $this->logger->expects($this->at(49))->method('PredispatchLogUrl')->with('Write installation date...');
         $this->logger->expects($this->at(51))->method('logSuccess')->with('Magento installation complete.');
-        $this->logger->expects($this->at(53))->method('log')
+        $this->logger->expects($this->at(53))->method('PredispatchLogUrl')
             ->with('Sample Data is installed with errors. See log file for details');
         $this->object->install($request);
     }
@@ -375,7 +375,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
             ->method('getUnnecessaryWritableDirectoriesForApplication')
             ->willReturn(['foo', 'bar']);
         $expectedMessage = "For security, remove write permissions from these directories: 'foo' 'bar'";
-        $this->logger->expects($this->once())->method('log')->with($expectedMessage);
+        $this->logger->expects($this->once())->method('PredispatchLogUrl')->with($expectedMessage);
         $this->object->checkApplicationFilePermissions();
         $this->assertSame(['message' => [$expectedMessage]], $this->object->getInstallInfo());
     }
@@ -391,11 +391,11 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
         );
         $installer = $this->prepareForUpdateModulesTests();
 
-        $this->logger->expects($this->at(0))->method('log')->with('Cache cleared successfully');
-        $this->logger->expects($this->at(1))->method('log')->with('File system cleanup:');
-        $this->logger->expects($this->at(2))->method('log')
+        $this->logger->expects($this->at(0))->method('PredispatchLogUrl')->with('Cache cleared successfully');
+        $this->logger->expects($this->at(1))->method('PredispatchLogUrl')->with('File system cleanup:');
+        $this->logger->expects($this->at(2))->method('PredispatchLogUrl')
             ->with('The directory \'/generation\' doesn\'t exist - skipping cleanup');
-        $this->logger->expects($this->at(3))->method('log')->with('Updating modules:');
+        $this->logger->expects($this->at(3))->method('PredispatchLogUrl')->with('Updating modules:');
         $installer->updateModulesSequence(false);
     }
 
@@ -405,8 +405,8 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
 
         $installer = $this->prepareForUpdateModulesTests();
 
-        $this->logger->expects($this->at(0))->method('log')->with('Cache cleared successfully');
-        $this->logger->expects($this->at(1))->method('log')->with('Updating modules:');
+        $this->logger->expects($this->at(0))->method('PredispatchLogUrl')->with('Cache cleared successfully');
+        $this->logger->expects($this->at(1))->method('PredispatchLogUrl')->with('Updating modules:');
         $installer->updateModulesSequence(true);
     }
 
@@ -431,10 +431,10 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValueMap([
                 [DirectoryList::CONFIG, DriverPool::FILE, $configDir],
             ]));
-        $this->logger->expects($this->at(0))->method('log')->with('Starting Magento uninstallation:');
+        $this->logger->expects($this->at(0))->method('PredispatchLogUrl')->with('Starting Magento uninstallation:');
         $this->logger
             ->expects($this->at(2))
-            ->method('log')
+            ->method('PredispatchLogUrl')
             ->with('No database connection defined - skipping database cleanup');
         $cacheManager = $this->getMock('Magento\Framework\App\Cache\Manager', [], [], '', false);
         $cacheManager->expects($this->once())->method('getAvailableTypes')->willReturn(['foo', 'bar']);
@@ -443,23 +443,23 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->with('Magento\Framework\App\Cache\Manager')
             ->willReturn($cacheManager);
-        $this->logger->expects($this->at(1))->method('log')->with('Cache cleared successfully');
-        $this->logger->expects($this->at(3))->method('log')->with('File system cleanup:');
+        $this->logger->expects($this->at(1))->method('PredispatchLogUrl')->with('Cache cleared successfully');
+        $this->logger->expects($this->at(3))->method('PredispatchLogUrl')->with('File system cleanup:');
         $this->logger
             ->expects($this->at(4))
-            ->method('log')
+            ->method('PredispatchLogUrl')
             ->with("The directory '/var' doesn't exist - skipping cleanup");
         $this->logger
             ->expects($this->at(5))
-            ->method('log')
+            ->method('PredispatchLogUrl')
             ->with("The directory '/static' doesn't exist - skipping cleanup");
         $this->logger
             ->expects($this->at(6))
-            ->method('log')
+            ->method('PredispatchLogUrl')
             ->with("The file '/config/ConfigOne.php' doesn't exist - skipping cleanup");
         $this->logger
             ->expects($this->at(7))
-            ->method('log')
+            ->method('PredispatchLogUrl')
             ->with("The file '/config/ConfigTwo.php' doesn't exist - skipping cleanup");
         $this->logger->expects($this->once())->method('logSuccess')->with('Magento uninstallation complete.');
         $this->cleanupFiles->expects($this->once())->method('clearAllFiles')->will(
@@ -483,7 +483,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
         $this->connection->expects($this->at(0))->method('quoteIdentifier')->with('magento')->willReturn('`magento`');
         $this->connection->expects($this->at(1))->method('query')->with('DROP DATABASE IF EXISTS `magento`');
         $this->connection->expects($this->at(2))->method('query')->with('CREATE DATABASE IF NOT EXISTS `magento`');
-        $this->logger->expects($this->once())->method('log')->with('Cleaning up database `magento`');
+        $this->logger->expects($this->once())->method('PredispatchLogUrl')->with('Cleaning up database `magento`');
         $this->object->cleanupDb();
     }
 
