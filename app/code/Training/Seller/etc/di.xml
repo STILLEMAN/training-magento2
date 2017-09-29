@@ -28,4 +28,23 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="training_seller_seller_listing_data_source" xsi:type="string">Training\Seller\Model\ResourceModel\Seller\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- PART 9 objectif : after sur le chargement des products -->
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="training-seller-product-plugin" type="\Training\Seller\Plugin\Model\Product"/>
+    </type>
+    <!-- Shell command -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="training_seller_get" xsi:type="object">Training\Seller\Console\Command\GetCommand</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

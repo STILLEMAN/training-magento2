@@ -1,0 +1,4 @@
+<config>
+  <!--1 or more repetitions:-->
+  <shop code="string" state="closed" name="string" address="string" city="string"/>
+</config>

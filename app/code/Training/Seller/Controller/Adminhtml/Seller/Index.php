@@ -16,14 +16,16 @@ class Index extends AbstractAction
     /**
      * Execute the action
      *
-     * @return void
+     * @return \Magento\Framework\View\Result\Page
      */
     public function execute()
     {
-        $model = $this->modelFactory->create();
-        $model->getResource()->load($model, 2);
-        echo '<pre>';
-        print_r($model->getData());
-        echo '</pre>';
+        $breadMain = __('Manage Sellers');
+
+        $resultPage = $this->resultPageFactory->create();
+        $resultPage->setActiveMenu('Training_Seller::manage');
+        $resultPage->getConfig()->getTitle()->prepend($breadMain);
+
+        return $resultPage;
     }
 }
