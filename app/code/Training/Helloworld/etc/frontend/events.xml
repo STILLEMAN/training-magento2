@@ -2,6 +2,7 @@
 <config
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- déclarer un observer -->
     <event name="controller_action_predispatch">
         <observer
                 name="training_helloworld_predispatch_log_url"

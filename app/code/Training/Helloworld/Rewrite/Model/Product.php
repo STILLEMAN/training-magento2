@@ -8,7 +8,12 @@
 
 namespace Training\Helloworld\Rewrite\Model;
 
-
+/**
+ * Rewrite la classe Model\Product ("surcharge")
+ * Il faut déclarer cette surcharge dans le di.xml
+ * Class Product
+ * @package Training\Helloworld\Rewrite\Model
+ */
 class Product extends \Magento\Catalog\Model\Product
 {
 

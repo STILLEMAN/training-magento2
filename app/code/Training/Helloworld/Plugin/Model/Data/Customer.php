@@ -12,6 +12,9 @@ namespace Training\Helloworld\Plugin\Model\Data;
 class Customer
 {
     /**
+     * Hook la fonction setFirstname de Customer.
+     * On reçoit toujours l'objet en 1er argument et ensuite les arguments de la fonction d'origine
+     *
      * @param \Magento\Customer\Model\Data\Customer $customer
      * @param $firstname
      * @return array

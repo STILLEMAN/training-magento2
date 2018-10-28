@@ -2,6 +2,8 @@
 <config
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- REWRITE -->
+    <!-- REWRITE : demande à Magento d'utiliser notre model de Product en lieu et place de celui par defaut. A chaque
+         fois que Magento appeler son model Product dans notre module, il est remplacé par le notre
+     -->
     <preference for="Magento\Catalog\Model\Product" type="Training\Helloworld\Rewrite\Model\Product" />
 </config>

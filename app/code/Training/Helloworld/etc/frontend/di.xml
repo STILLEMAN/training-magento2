@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
+<!-- Fichier s'appliquant uniquement pour le FrontEnd -->
 <config
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- PLUGIN -->
+    <!-- PLUGIN : "surcharger" l'appeler d'une fonction grâce à un hook (after,before ou around[= before et after])
+         Around sera utilisé si on a besoin de passer des paramètres (informations) entre le before et le after
+     -->
+
     <type name="Magento\Customer\Model\Data\Customer">
+        <!-- Créer un plugin ACTIF. Le nom correspond toujours à notre namespace. Il est possible de mettre un order-->
         <plugin
                 name="training-helloworld-customer-plugin"
                 type="Training\Helloworld\Plugin\Model\Data\Customer"

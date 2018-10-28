@@ -2,7 +2,12 @@
 <config
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <!-- id = type de router -->
     <router id="standard">
+        <!-- accès à l'action index/index via helloworld/index/index ou helloworld ou helloworld/index
+             accès à l'action product/categories via helloworld/product/categories
+             système de route à la ZF
+         -->
         <route id="training_helloworld" frontName="helloworld">
             <module name="Training_Helloworld" />
         </route>
